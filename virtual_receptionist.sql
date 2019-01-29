@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Jan 22. 02:21
+-- Létrehozás ideje: 2019. Jan 29. 21:23
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -43,6 +43,8 @@ CREATE TABLE IF NOT EXISTS `accomodation` (
   `Site` varchar(150) COLLATE utf8_hungarian_ci NOT NULL,
   `PhoneNumber` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `EmailAddress` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `AccomodationID` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
+  `Password` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `AccomodationName` (`AccomodationName`,`CompanyName`,`VATNumber`,`PhoneNumber`,`EmailAddress`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
@@ -51,29 +53,8 @@ CREATE TABLE IF NOT EXISTS `accomodation` (
 -- A tábla adatainak kiíratása `accomodation`
 --
 
-INSERT INTO `accomodation` (`ID`, `AccomodationName`, `CompanyName`, `Contact`, `VATNumber`, `Headquarters`, `Site`, `PhoneNumber`, `EmailAddress`) VALUES
-(1, 'Autós Panzió', 'Autóscsárda-Panzió Vendéglátó és Kereskedelmi Kft.', 'Szabó Norbert', '1-35-42199206', '6900 Makó, Deák Ferenc u. 28/B', '6900 Makó, Báló liget', '06 (62) 510 298', 'info@autospanzio.hu');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `accomodation_registration`
---
-
-DROP TABLE IF EXISTS `accomodation_registration`;
-CREATE TABLE IF NOT EXISTS `accomodation_registration` (
-  `Accomodation` int(11) NOT NULL AUTO_INCREMENT,
-  `AccomodationID` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
-  `Password` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`Accomodation`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `accomodation_registration`
---
-
-INSERT INTO `accomodation_registration` (`Accomodation`, `AccomodationID`, `Password`) VALUES
-(1, 'AUTSPNZ', 'norci71');
+INSERT INTO `accomodation` (`ID`, `AccomodationName`, `CompanyName`, `Contact`, `VATNumber`, `Headquarters`, `Site`, `PhoneNumber`, `EmailAddress`, `AccomodationID`, `Password`) VALUES
+(1, 'Autós Panzió', 'Autóscsárda-Panzió Vendéglátó és Kereskedelmi Kft.', 'Szabó Norbert', '1-35-42199206', '6900 Makó, Deák Ferenc u. 28./B', '6900 Makó, Kemping sor 1.', '06 (62) 510 298', 'info@autospanzio.hu', 'AUTPNZ', 'norci71');
 
 -- --------------------------------------------------------
 
@@ -347,21 +328,6 @@ INSERT INTO `country` (`ID`, `CountryCode`, `CountryName`) VALUES
 (195, 'ZA', 'Dél-afrikai Köztársaság'),
 (196, 'ZM', 'Zambia'),
 (197, 'ZW', 'Zimbabwe');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `desktop_log`
---
-
-DROP TABLE IF EXISTS `desktop_log`;
-CREATE TABLE IF NOT EXISTS `desktop_log` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `MachineName` varchar(30) COLLATE utf8_hungarian_ci NOT NULL,
-  `LoginDate` datetime NOT NULL,
-  `LogoutDate` datetime NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
 
@@ -4068,12 +4034,6 @@ INSERT INTO `room_category` (`ID`, `CategoryName`) VALUES
 --
 -- Megkötések a kiírt táblákhoz
 --
-
---
--- Megkötések a táblához `accomodation_registration`
---
-ALTER TABLE `accomodation_registration`
-  ADD CONSTRAINT `accomodationIDOneToOne` FOREIGN KEY (`Accomodation`) REFERENCES `accomodation` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Megkötések a táblához `billing_item`
