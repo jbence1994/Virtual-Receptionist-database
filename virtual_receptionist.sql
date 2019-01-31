@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Jan 31. 04:09
+-- Létrehozás ideje: 2019. Jan 31. 21:02
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -367,8 +367,18 @@ CREATE TABLE IF NOT EXISTS `guest` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `PhoneNumber` (`PhoneNumber`),
   UNIQUE KEY `EmailAddress` (`EmailAddress`),
+  UNIQUE KEY `DocumentNumber` (`DocumentNumber`),
+  UNIQUE KEY `VATNumber` (`VATNumber`),
   KEY `countryid` (`Country`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `guest`
+--
+
+INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`, `VATNumber`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
+(1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', '', 76, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
+(2, 'Autóscsárda-Panzió Kft.', '', '', NULL, '13542199-2-06', 76, '6900', 'Makó', 'Deák Ferenc utca 28./B', '06 (62) / 510-298', 'info@autospanzio.hu');
 
 -- --------------------------------------------------------
 
