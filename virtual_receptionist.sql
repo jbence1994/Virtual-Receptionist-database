@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `accomodation` (
 --
 
 INSERT INTO `accomodation` (`ID`, `AccomodationName`, `CompanyName`, `Contact`, `VATNumber`, `Headquarters`, `Site`, `PhoneNumber`, `EmailAddress`, `AccomodationID`, `Password`) VALUES
-(1, 'Autós Panzió', 'Autóscsárda-Panzió Vendéglátó és Kereskedelmi Kft.', 'Szabó Norbert', '135-42199-2-06', '6900 Makó, Deák Ferenc u. 28./B', '6900 Makó, Kemping sor 1.', '06 (62) 510 298', 'info@autospanzio.hu', 'AUTPNZ', 'norci71');
+(1, 'Autós Panzió', 'Autóscsárda-Panzió Vendéglátó és Kereskedelmi Kft.', 'Szabó Norbert', '135-42199-2-06', '6900 Makó, Deák Ferenc u. 28./B', '6900 Makó, Báló liget', '06 (62) 510 298', 'info@autospanzio.hu', 'AUTPNZ', 'norci71');
 
 -- --------------------------------------------------------
 
@@ -377,8 +377,8 @@ CREATE TABLE IF NOT EXISTS `guest` (
 --
 
 INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`, `VATNumber`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
-(1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', '', 76, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
-(2, 'Autóscsárda-Panzió Kft.', '', '', NULL, '13542199-2-06', 76, '6900', 'Makó', 'Deák Ferenc utca 28./B', '06 (62) / 510-298', 'info@autospanzio.hu');
+(1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', '', 111, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
+(2, 'Autóscsárda-Panzió Kft.', '', '', NULL, '13542199-2-06', 111, '6900', 'Makó', 'Deák Ferenc utca 28./B', '06 (62) / 510-298', 'info@autospanzio.hu');
 
 -- --------------------------------------------------------
 
