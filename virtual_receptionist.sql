@@ -225,7 +225,7 @@ INSERT INTO `country` (`ID`, `CountryName`) VALUES
 (93, 'Koreai Köztársaság'),
 (94, 'Koreai Népi Demokratikus Köztársaság'),
 (95, 'Koszovó'),
-(95, 'Közép-afrikai Köztársaság'),
+(96, 'Közép-afrikai Köztársaság'),
 (97, 'Kuba'),
 (98, 'Kuwait'),
 (99, 'Laosz'),
