@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `accomodation` (
 --
 
 INSERT INTO `accomodation` (`ID`, `AccomodationName`, `CompanyName`, `Contact`, `VATNumber`, `Headquarters`, `Site`, `PhoneNumber`, `EmailAddress`, `AccomodationID`, `Password`) VALUES
-(1, 'Autós Panzió', 'Autóscsárda-Panzió Vendéglátó és Kereskedelmi Kft.', 'Szabó Norbert', '135-42199-2-06', '6900 Makó, Deák Ferenc u. 28./B', '6900 Makó, Báló liget', '06 (62) 510 298', 'info@autospanzio.hu', 'AUTPNZ', 'norci71');
+(1, 'Autós Panzió', 'Autóscsárda-Panzió Vendéglátó és Kereskedelmi Kft.', 'Szabó Norbert', '13542199-2-06', '6900 Makó, Deák Ferenc u. 28./B', '6900 Makó, Báló liget', '06 (62) 510 298', 'info@autospanzio.hu', 'AUTPNZ', 'norci71');
 
 -- --------------------------------------------------------
 
