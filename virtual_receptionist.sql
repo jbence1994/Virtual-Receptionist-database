@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Jan 31. 21:02
+-- Létrehozás ideje: 2019. Feb 05. 16:35
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -43,8 +43,6 @@ CREATE TABLE IF NOT EXISTS `accomodation` (
   `Site` varchar(150) COLLATE utf8_hungarian_ci NOT NULL,
   `PhoneNumber` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `EmailAddress` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `AccomodationID` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
-  `Password` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `AccomodationName` (`AccomodationName`,`CompanyName`,`VATNumber`,`PhoneNumber`,`EmailAddress`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
@@ -53,8 +51,29 @@ CREATE TABLE IF NOT EXISTS `accomodation` (
 -- A tábla adatainak kiíratása `accomodation`
 --
 
-INSERT INTO `accomodation` (`ID`, `AccomodationName`, `CompanyName`, `Contact`, `VATNumber`, `Headquarters`, `Site`, `PhoneNumber`, `EmailAddress`, `AccomodationID`, `Password`) VALUES
-(1, 'Autós Panzió', 'Autóscsárda-Panzió Vendéglátó és Kereskedelmi Kft.', 'Szabó Norbert', '13542199-2-06', '6900 Makó, Deák Ferenc u. 28./B', '6900 Makó, Báló liget', '06 (62) 510 298', 'info@autospanzio.hu', 'AUTPNZ', 'norci71');
+INSERT INTO `accomodation` (`ID`, `AccomodationName`, `CompanyName`, `Contact`, `VATNumber`, `Headquarters`, `Site`, `PhoneNumber`, `EmailAddress`) VALUES
+(1, 'Autós Panzió', 'Autóscsárda-Panzió Vendéglátó és Kereskedelmi Kft.', 'Szabó Norbert', '13542199-2-06', '6900 Makó, Deák Ferenc u. 28./B', '6900 Makó, Báló liget', '06 (62) 510 298', 'info@autospanzio.hu');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `accomodation_profile`
+--
+
+DROP TABLE IF EXISTS `accomodation_profile`;
+CREATE TABLE IF NOT EXISTS `accomodation_profile` (
+  `Accomodation` int(11) NOT NULL AUTO_INCREMENT,
+  `AccomodationID` varchar(10) COLLATE utf8_hungarian_ci NOT NULL,
+  `Password` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
+  PRIMARY KEY (`Accomodation`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `accomodation_profile`
+--
+
+INSERT INTO `accomodation_profile` (`Accomodation`, `AccomodationID`, `Password`) VALUES
+(1, 'AUTPNZ', 'norci71');
 
 -- --------------------------------------------------------
 
@@ -367,10 +386,8 @@ CREATE TABLE IF NOT EXISTS `guest` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `PhoneNumber` (`PhoneNumber`),
   UNIQUE KEY `EmailAddress` (`EmailAddress`),
-  UNIQUE KEY `DocumentNumber` (`DocumentNumber`),
-  UNIQUE KEY `VATNumber` (`VATNumber`),
   KEY `countryid` (`Country`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `guest`
@@ -378,7 +395,16 @@ CREATE TABLE IF NOT EXISTS `guest` (
 
 INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`, `VATNumber`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
 (1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', '', 111, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
-(2, 'Autóscsárda-Panzió Kft.', '', '', NULL, '13542199-2-06', 111, '6900', 'Makó', 'Deák Ferenc utca 28./B', '06 (62) / 510-298', 'info@autospanzio.hu');
+(2, 'Autóscsárda-Panzió Kft.', '', '', NULL, '13542199-2-06', 111, '6900', 'Makó', 'Deák Ferenc utca 28./B', '06 (62) / 510-298', 'info@autospanzio.hu'),
+(3, 'Duna-Döner Kft.', '', '', NULL, '14217395-2-06', 111, '6900', 'Makó', 'Hunyadi u. 4./A', '06 626 38 225', 'office@dunadoner.com'),
+(4, 'Netsurf Távközlési Kft.', '', '', NULL, '12937626-2-06', 111, '6724', 'Szeged', 'Rókusi körút 42-64.', '06 (62) / 488-944', 'info@netsurfclub.hu'),
+(5, 'Csipet és Társa Bt.', '', '', NULL, '24351283-2-06', 111, '6900', 'Makó', 'Bajza utca 14.', '', ''),
+(6, 'KÖZGÉP Zrt.', '', '', NULL, '10950676-2-44', 111, '1239', 'Budapest', 'Haraszti út 44.', '06 (1) 286 0322', 'info@kozgep.hu'),
+(7, 'Mészáros és Mészáros Kft.', '', '', NULL, '12671003-2-07', 111, '8086', 'Felcsút', '0311/5.hrsz.', '06 (30) / 849-6670', 'info@meszaroskft.hu'),
+(8, 'FIDESZ - Magyar Polgári Szövetség', '', '', NULL, '19007225-2-42', 111, '1062', 'Budapest', 'Lendvay utca 28.', '06 (1) / 555-2000', 'fidesz@fidesz.hu'),
+(9, 'Magyar Szocialista Párt', '', '', NULL, '19007081-2-42', 111, '1073', 'Budapest', 'Erzsébet körút 40-42. fszt I-1. ajtó', '06 (1) / 222-6797', 'info@mszp.hu'),
+(10, 'Ábrahám Alajos', '122562AR', 'magyar', '1934-02-22', '', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
+(11, 'Vakkas Tanner', 'UBNT23E', 'török', '1973-12-12', '', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'vakkas@turkeycom.tr');
 
 -- --------------------------------------------------------
 
@@ -467,6 +493,12 @@ INSERT INTO `room_category` (`ID`, `CategoryName`) VALUES
 --
 -- Megkötések a kiírt táblákhoz
 --
+
+--
+-- Megkötések a táblához `accomodation_profile`
+--
+ALTER TABLE `accomodation_profile`
+  ADD CONSTRAINT `accomodationid` FOREIGN KEY (`Accomodation`) REFERENCES `accomodation` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Megkötések a táblához `billing_item`
