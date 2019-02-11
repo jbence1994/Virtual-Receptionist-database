@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 05. 16:35
+-- Létrehozás ideje: 2019. Feb 12. 00:36
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -439,6 +439,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `Category` int(11) NOT NULL,
   `Capacity` int(100) NOT NULL,
   PRIMARY KEY (`ID`),
+  UNIQUE KEY `Number` (`Number`),
   KEY `categoryid` (`Category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
