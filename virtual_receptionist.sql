@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 12. 00:36
+-- Létrehozás ideje: 2019. Feb 12. 01:47
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -65,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `accomodation_profile` (
   `Accomodation` int(11) NOT NULL AUTO_INCREMENT,
   `AccomodationID` varchar(10) COLLATE utf8_hungarian_ci NOT NULL,
   `Password` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`Accomodation`)
+  PRIMARY KEY (`Accomodation`),
+  UNIQUE KEY `AccomodationID` (`AccomodationID`,`Password`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
