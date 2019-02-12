@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 12. 14:49
+-- Létrehozás ideje: 2019. Feb 12. 15:32
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -371,22 +371,6 @@ INSERT INTO `country` (`ID`, `CountryName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `desktop_log`
---
-
-DROP TABLE IF EXISTS `desktop_log`;
-CREATE TABLE IF NOT EXISTS `desktop_log` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Client` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
-  `OS_Version` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `LoginDate` varchar(25) COLLATE utf8_hungarian_ci DEFAULT NULL,
-  `LogoutDate` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
--- --------------------------------------------------------
-
---
 -- Tábla szerkezet ehhez a táblához `guest`
 --
 
@@ -426,6 +410,22 @@ INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`,
 (9, 'Magyar Szocialista Párt', '', '', NULL, '19007081-2-42', 111, '1073', 'Budapest', 'Erzsébet körút 40-42. fszt I-1. ajtó', '06 (1) / 222-6797', 'info@mszp.hu'),
 (10, 'Ábrahám Alajos', '122562AR', 'magyar', '1934-02-22', '', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
 (11, 'Vakkas Tanner', 'UBNT23E', 'török', '1973-12-12', '', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'vakkas@turkeycom.tr');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `log`
+--
+
+DROP TABLE IF EXISTS `log`;
+CREATE TABLE IF NOT EXISTS `log` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Client` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
+  `OS_Version` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `LoginDate` varchar(25) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `LogoutDate` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
 
