@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 12. 01:47
+-- Létrehozás ideje: 2019. Feb 12. 12:47
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `accomodation` (
   `PhoneNumber` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `EmailAddress` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `AccomodationName` (`AccomodationName`,`CompanyName`,`VATNumber`,`PhoneNumber`,`EmailAddress`)
+  UNIQUE KEY `Accomodation` (`AccomodationName`,`CompanyName`,`VATNumber`,`PhoneNumber`,`EmailAddress`),
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `accomodation_profile` (
   `AccomodationID` varchar(10) COLLATE utf8_hungarian_ci NOT NULL,
   `Password` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`Accomodation`),
-  UNIQUE KEY `AccomodationID` (`AccomodationID`,`Password`)
+  UNIQUE KEY `Accomodation` (`AccomodationID`,`Password`),
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -89,6 +89,7 @@ CREATE TABLE IF NOT EXISTS `billing_item` (
   `Category` int(11) NOT NULL,
   `Price` varchar(10) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`),
+  UNIQUE KEY `BillingItem` (`BillingItemName`),
   KEY `category` (`Category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
@@ -142,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `country` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CountryName` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `Code` (`CountryName`)
+  UNIQUE KEY `CountryName` (`CountryName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -477,7 +478,8 @@ DROP TABLE IF EXISTS `room_category`;
 CREATE TABLE IF NOT EXISTS `room_category` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `Category` (`CategoryName`),
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
