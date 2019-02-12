@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 12. 12:47
+-- Létrehozás ideje: 2019. Feb 12. 14:49
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -131,6 +131,25 @@ INSERT INTO `billing_item_category` (`ID`, `BillingItemCategoryName`, `VAT`, `Un
 (2, 'Fogyasztás (étel, ital)', 18, 'alkalom'),
 (3, 'Tárgyi adó mentes', 0, 'darab'),
 (4, 'Egyéb szolgáltatás', 27, 'alkalom');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `booking`
+--
+
+DROP TABLE IF EXISTS `booking`;
+CREATE TABLE IF NOT EXISTS `booking` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `GuestID` int(11) NOT NULL,
+  `RoomID` int(11) NOT NULL,
+  `NumberOfGuests` int(10) NOT NULL,
+  `ArrivalDate` date NOT NULL,
+  `DepartureDate` date NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `roomid` (`RoomID`),
+  KEY `guestid` (`GuestID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
 
@@ -411,25 +430,6 @@ INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`,
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `reservation`
---
-
-DROP TABLE IF EXISTS `reservation`;
-CREATE TABLE IF NOT EXISTS `reservation` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `GuestID` int(11) NOT NULL,
-  `RoomID` int(11) NOT NULL,
-  `NumberOfGuests` int(10) NOT NULL,
-  `ArrivalDate` date NOT NULL,
-  `DepartureDate` date NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `roomid` (`RoomID`),
-  KEY `guestid` (`GuestID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
--- --------------------------------------------------------
-
---
 -- Tábla szerkezet ehhez a táblához `room`
 --
 
@@ -511,17 +511,17 @@ ALTER TABLE `billing_item`
   ADD CONSTRAINT `category` FOREIGN KEY (`Category`) REFERENCES `billing_item_category` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Megkötések a táblához `booking`
+--
+ALTER TABLE `booking`
+  ADD CONSTRAINT `guestid` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `roomid` FOREIGN KEY (`RoomID`) REFERENCES `room` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Megkötések a táblához `guest`
 --
 ALTER TABLE `guest`
   ADD CONSTRAINT `countryid` FOREIGN KEY (`Country`) REFERENCES `country` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Megkötések a táblához `reservation`
---
-ALTER TABLE `reservation`
-  ADD CONSTRAINT `guestid` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `roomid` FOREIGN KEY (`RoomID`) REFERENCES `room` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Megkötések a táblához `room`
