@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `accomodation` (
   `PhoneNumber` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `EmailAddress` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `Accomodation` (`AccomodationName`,`CompanyName`,`VATNumber`,`PhoneNumber`,`EmailAddress`),
+  UNIQUE KEY `Accomodation` (`AccomodationName`,`CompanyName`,`VATNumber`,`PhoneNumber`,`EmailAddress`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `accomodation_profile` (
   `AccomodationID` varchar(10) COLLATE utf8_hungarian_ci NOT NULL,
   `Password` varchar(8) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`Accomodation`),
-  UNIQUE KEY `Accomodation` (`AccomodationID`,`Password`),
+  UNIQUE KEY `Accomodation` (`AccomodationID`,`Password`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
@@ -479,7 +479,7 @@ CREATE TABLE IF NOT EXISTS `room_category` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `Category` (`CategoryName`),
+  UNIQUE KEY `Category` (`CategoryName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
