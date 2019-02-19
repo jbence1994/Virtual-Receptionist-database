@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 12. 15:32
+-- Létrehozás ideje: 2019. Feb 19. 02:05
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -149,7 +149,16 @@ CREATE TABLE IF NOT EXISTS `booking` (
   PRIMARY KEY (`ID`),
   KEY `roomid` (`RoomID`),
   KEY `guestid` (`GuestID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `booking`
+--
+
+INSERT INTO `booking` (`ID`, `GuestID`, `RoomID`, `NumberOfGuests`, `ArrivalDate`, `DepartureDate`) VALUES
+(1, 3, 1, 2, '2019-02-14', '2019-02-15'),
+(2, 3, 11, 2, '2019-02-18', '2019-02-28'),
+(3, 2, 4, 1, '2019-02-03', '2019-02-09');
 
 -- --------------------------------------------------------
 
@@ -477,16 +486,16 @@ INSERT INTO `room` (`ID`, `Name`, `Number`, `Category`, `Capacity`) VALUES
 DROP TABLE IF EXISTS `room_category`;
 CREATE TABLE IF NOT EXISTS `room_category` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `CategoryName` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
+  `RoomCategoryName` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `Category` (`CategoryName`)
+  UNIQUE KEY `Category` (`RoomCategoryName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `room_category`
 --
 
-INSERT INTO `room_category` (`ID`, `CategoryName`) VALUES
+INSERT INTO `room_category` (`ID`, `RoomCategoryName`) VALUES
 (1, 'Földszinti háromágyas'),
 (2, 'Földszinti családi négyágyas'),
 (3, 'Földszinti franciaágyas'),
