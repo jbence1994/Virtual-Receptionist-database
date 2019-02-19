@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 19. 02:05
+-- Létrehozás ideje: 2019. Feb 19. 22:07
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -149,16 +149,15 @@ CREATE TABLE IF NOT EXISTS `booking` (
   PRIMARY KEY (`ID`),
   KEY `roomid` (`RoomID`),
   KEY `guestid` (`GuestID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `booking`
 --
 
 INSERT INTO `booking` (`ID`, `GuestID`, `RoomID`, `NumberOfGuests`, `ArrivalDate`, `DepartureDate`) VALUES
-(1, 3, 1, 2, '2019-02-14', '2019-02-15'),
-(2, 3, 11, 2, '2019-02-18', '2019-02-28'),
-(3, 2, 4, 1, '2019-02-03', '2019-02-09');
+(1, 1, 14, 4, '2019-02-19', '2019-02-20'),
+(2, 11, 15, 3, '2019-02-19', '2019-02-20');
 
 -- --------------------------------------------------------
 
@@ -390,6 +389,7 @@ CREATE TABLE IF NOT EXISTS `guest` (
   `DocumentNumber` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
   `Citizenship` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
   `BirthDate` date DEFAULT NULL,
+  `BillingName` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
   `VATNumber` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
   `Country` int(11) NOT NULL,
   `ZipCode` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
@@ -407,18 +407,18 @@ CREATE TABLE IF NOT EXISTS `guest` (
 -- A tábla adatainak kiíratása `guest`
 --
 
-INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`, `VATNumber`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
-(1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', '', 111, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
-(2, 'Autóscsárda-Panzió Kft.', '', '', NULL, '13542199-2-06', 111, '6900', 'Makó', 'Deák Ferenc utca 28./B', '06 (62) / 510-298', 'info@autospanzio.hu'),
-(3, 'Duna-Döner Kft.', '', '', NULL, '14217395-2-06', 111, '6900', 'Makó', 'Hunyadi u. 4./A', '06 626 38 225', 'office@dunadoner.com'),
-(4, 'Netsurf Távközlési Kft.', '', '', NULL, '12937626-2-06', 111, '6724', 'Szeged', 'Rókusi körút 42-64.', '06 (62) / 488-944', 'info@netsurfclub.hu'),
-(5, 'Csipet és Társa Bt.', '', '', NULL, '24351283-2-06', 111, '6900', 'Makó', 'Bajza utca 14.', '', ''),
-(6, 'KÖZGÉP Zrt.', '', '', NULL, '10950676-2-44', 111, '1239', 'Budapest', 'Haraszti út 44.', '06 (1) 286 0322', 'info@kozgep.hu'),
-(7, 'Mészáros és Mészáros Kft.', '', '', NULL, '12671003-2-07', 111, '8086', 'Felcsút', '0311/5.hrsz.', '06 (30) / 849-6670', 'info@meszaroskft.hu'),
-(8, 'FIDESZ - Magyar Polgári Szövetség', '', '', NULL, '19007225-2-42', 111, '1062', 'Budapest', 'Lendvay utca 28.', '06 (1) / 555-2000', 'fidesz@fidesz.hu'),
-(9, 'Magyar Szocialista Párt', '', '', NULL, '19007081-2-42', 111, '1073', 'Budapest', 'Erzsébet körút 40-42. fszt I-1. ajtó', '06 (1) / 222-6797', 'info@mszp.hu'),
-(10, 'Ábrahám Alajos', '122562AR', 'magyar', '1934-02-22', '', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
-(11, 'Vakkas Tanner', 'UBNT23E', 'török', '1973-12-12', '', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'vakkas@turkeycom.tr');
+INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`, `BillingName`, `VATNumber`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
+(1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', '', '', 111, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
+(2, 'Autóscsárda-Panzió Kft.', '', '', NULL, '', '13542199-2-06', 111, '6900', 'Makó', 'Deák Ferenc utca 28./B', '06 (62) / 510-298', 'info@autospanzio.hu'),
+(3, 'Duna-Döner Kft.', '', '', NULL, '', '14217395-2-06', 111, '6900', 'Makó', 'Hunyadi u. 4./A', '06 626 38 225', 'office@dunadoner.com'),
+(4, 'Netsurf Távközlési Kft.', '', '', NULL, '', '12937626-2-06', 111, '6724', 'Szeged', 'Rókusi körút 42-64.', '06 (62) / 488-944', 'info@netsurfclub.hu'),
+(5, 'Csipet és Társa Bt.', '', '', NULL, '', '24351283-2-06', 111, '6900', 'Makó', 'Bajza utca 14.', '', ''),
+(6, 'KÖZGÉP Zrt.', '', '', NULL, '', '10950676-2-44', 111, '1239', 'Budapest', 'Haraszti út 44.', '06 (1) 286 0322', 'info@kozgep.hu'),
+(7, 'Mészáros és Mészáros Kft.', '', '', NULL, '', '12671003-2-07', 111, '8086', 'Felcsút', '0311/5.hrsz.', '06 (30) / 849-6670', 'info@meszaroskft.hu'),
+(8, 'FIDESZ - Magyar Polgári Szövetség', '', '', NULL, '', '19007225-2-42', 111, '1062', 'Budapest', 'Lendvay utca 28.', '06 (1) / 555-2000', 'fidesz@fidesz.hu'),
+(9, 'Magyar Szocialista Párt', '', '', NULL, '', '19007081-2-42', 111, '1073', 'Budapest', 'Erzsébet körút 40-42. fszt I-1. ajtó', '06 (1) / 222-6797', 'info@mszp.hu'),
+(10, 'Ábrahám Alajos', '122562AR', 'magyar', '1934-02-22', '', '', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
+(11, 'Vakkas Tanner', 'UBNT23E', 'török', '1973-12-12', '', '', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'vakkas@turkeycom.tr');
 
 -- --------------------------------------------------------
 
@@ -445,8 +445,8 @@ CREATE TABLE IF NOT EXISTS `log` (
 DROP TABLE IF EXISTS `room`;
 CREATE TABLE IF NOT EXISTS `room` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `Number` int(3) NOT NULL,
+  `Name` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
   `Category` int(11) NOT NULL,
   `Capacity` int(100) NOT NULL,
   PRIMARY KEY (`ID`),
@@ -458,24 +458,24 @@ CREATE TABLE IF NOT EXISTS `room` (
 -- A tábla adatainak kiíratása `room`
 --
 
-INSERT INTO `room` (`ID`, `Name`, `Number`, `Category`, `Capacity`) VALUES
-(1, 'Háromágyas', 1, 1, 3),
-(2, 'Háromágyas', 2, 1, 3),
-(3, 'Családi', 3, 2, 4),
-(4, 'Családi', 4, 2, 4),
-(5, 'Franciaágyas', 6, 3, 2),
-(6, 'Franciaágyas', 7, 3, 2),
-(7, 'Franciaágyas', 8, 3, 2),
-(8, 'Háromágyas', 9, 1, 3),
-(9, 'Háromágyas', 10, 1, 3),
-(10, 'Háromágyas', 11, 1, 3),
-(11, 'Háromágyas', 12, 1, 3),
-(12, 'Franciaágyas', 14, 4, 2),
-(13, 'Külön ágyas', 15, 5, 2),
-(14, 'Apartman', 16, 6, 4),
-(15, 'Apartman', 17, 6, 4),
-(16, 'Külön ágyas', 18, 5, 2),
-(17, 'Franciaágyas', 19, 4, 2);
+INSERT INTO `room` (`ID`, `Number`, `Name`, `Category`, `Capacity`) VALUES
+(1, 1, 'Háromágyas', 1, 3),
+(2, 2, 'Háromágyas', 1, 3),
+(3, 3, 'Családi', 2, 4),
+(4, 4, 'Családi', 2, 4),
+(5, 6, 'Franciaágyas', 3, 2),
+(6, 7, 'Franciaágyas', 3, 2),
+(7, 8, 'Franciaágyas', 3, 2),
+(8, 9, 'Háromágyas', 1, 3),
+(9, 10, 'Háromágyas', 1, 3),
+(10, 11, 'Háromágyas', 1, 3),
+(11, 12, 'Háromágyas', 1, 3),
+(12, 14, 'Franciaágyas', 4, 2),
+(13, 15, 'Külön ágyas', 5, 2),
+(14, 16, 'Apartman', 6, 4),
+(15, 17, 'Apartman', 6, 4),
+(16, 18, 'Külön ágyas', 5, 2),
+(17, 19, 'Franciaágyas', 4, 2);
 
 -- --------------------------------------------------------
 
