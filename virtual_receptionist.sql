@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
 
 INSERT INTO `booking` (`ID`, `GuestID`, `RoomID`, `NumberOfGuests`, `ArrivalDate`, `DepartureDate`) VALUES
 (1, 1, 14, 4, '2019-02-19', '2019-02-20'),
-(2, 11, 15, 3, '2019-02-19', '2019-02-20');
+(2, 2, 15, 3, '2019-02-19', '2019-02-20');
 
 -- --------------------------------------------------------
 
@@ -401,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `guest` (
   UNIQUE KEY `PhoneNumber` (`PhoneNumber`),
   UNIQUE KEY `EmailAddress` (`EmailAddress`),
   KEY `countryid` (`Country`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `guest`
@@ -409,16 +409,12 @@ CREATE TABLE IF NOT EXISTS `guest` (
 
 INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`, `BillingName`, `VATNumber`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
 (1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', '', '', 111, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
-(2, 'Autóscsárda-Panzió Kft.', '', '', NULL, '', '13542199-2-06', 111, '6900', 'Makó', 'Deák Ferenc utca 28./B', '06 (62) / 510-298', 'info@autospanzio.hu'),
-(3, 'Duna-Döner Kft.', '', '', NULL, '', '14217395-2-06', 111, '6900', 'Makó', 'Hunyadi u. 4./A', '06 626 38 225', 'office@dunadoner.com'),
-(4, 'Netsurf Távközlési Kft.', '', '', NULL, '', '12937626-2-06', 111, '6724', 'Szeged', 'Rókusi körút 42-64.', '06 (62) / 488-944', 'info@netsurfclub.hu'),
-(5, 'Csipet és Társa Bt.', '', '', NULL, '', '24351283-2-06', 111, '6900', 'Makó', 'Bajza utca 14.', '', ''),
-(6, 'KÖZGÉP Zrt.', '', '', NULL, '', '10950676-2-44', 111, '1239', 'Budapest', 'Haraszti út 44.', '06 (1) 286 0322', 'info@kozgep.hu'),
-(7, 'Mészáros és Mészáros Kft.', '', '', NULL, '', '12671003-2-07', 111, '8086', 'Felcsút', '0311/5.hrsz.', '06 (30) / 849-6670', 'info@meszaroskft.hu'),
-(8, 'FIDESZ - Magyar Polgári Szövetség', '', '', NULL, '', '19007225-2-42', 111, '1062', 'Budapest', 'Lendvay utca 28.', '06 (1) / 555-2000', 'fidesz@fidesz.hu'),
-(9, 'Magyar Szocialista Párt', '', '', NULL, '', '19007081-2-42', 111, '1073', 'Budapest', 'Erzsébet körút 40-42. fszt I-1. ajtó', '06 (1) / 222-6797', 'info@mszp.hu'),
-(10, 'Ábrahám Alajos', '122562AR', 'magyar', '1934-02-22', '', '', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
-(11, 'Vakkas Tanner', 'UBNT23E', 'török', '1973-12-12', '', '', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'vakkas@turkeycom.tr');
+(2, 'Duna-Döner Kft.', '', '', NULL, '', '14217395-2-06', 111, '6900', 'Makó', 'Hunyadi u. 4./A', '06 626 38 225', 'office@dunadoner.com'),
+(3, 'Netsurf Távközlési Kft.', '', '', NULL, '', '12937626-2-06', 111, '6724', 'Szeged', 'Rókusi körút 42-64.', '06 (62) / 488-944', 'info@netsurfclub.hu'),
+(4, 'KÖZGÉP Zrt.', '', '', NULL, '', '10950676-2-44', 111, '1239', 'Budapest', 'Haraszti út 44.', '06 (1) 286 0322', 'info@kozgep.hu'),
+(5, 'Mészáros és Mészáros Kft.', '', '', NULL, '', '12671003-2-07', 111, '8086', 'Felcsút', '0311/5.hrsz.', '06 (30) / 849-6670', 'info@meszaroskft.hu'),
+(6, 'Ábrahám Alajos', '122562AR', 'magyar', '1934-02-22', '', '', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
+(7, 'Vakkas Tanner', 'UBNT23E', 'török', '1973-12-12', '', '', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'vakkas@turkeycom.tr');
 
 -- --------------------------------------------------------
 
