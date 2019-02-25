@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 25. 17:43
+-- Létrehozás ideje: 2019. Feb 25. 17:50
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -142,7 +142,7 @@ DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `GuestID` int(11) NOT NULL,
-  `CompanyID` int(11) NOT NULL,
+  `CompanyID` int(11),
   `RoomID` int(11) NOT NULL,
   `NumberOfGuests` int(10) NOT NULL,
   `ArrivalDate` date NOT NULL,
@@ -151,14 +151,15 @@ CREATE TABLE IF NOT EXISTS `booking` (
   KEY `roomid` (`RoomID`),
   KEY `guestid` (`GuestID`),
   KEY `companyid` (`CompanyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `booking`
 --
 
 INSERT INTO `booking` (`ID`, `GuestID`, `CompanyID`, `RoomID`, `NumberOfGuests`, `ArrivalDate`, `DepartureDate`) VALUES
-(1, 1, 1, 12, 2, '2019-02-25', '2019-02-26');
+(1, 3, 1, 15, 4, '2019-02-25', '2019-02-26'),
+(2, 1, NULL, 1, 3, '2019-02-25', '2019-02-26');
 
 -- --------------------------------------------------------
 
