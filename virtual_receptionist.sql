@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 19. 22:07
+-- Létrehozás ideje: 2019. Feb 25. 15:02
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -149,15 +149,41 @@ CREATE TABLE IF NOT EXISTS `booking` (
   PRIMARY KEY (`ID`),
   KEY `roomid` (`RoomID`),
   KEY `guestid` (`GuestID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+-- --------------------------------------------------------
 
 --
--- A tábla adatainak kiíratása `booking`
+-- Tábla szerkezet ehhez a táblához `company`
 --
 
-INSERT INTO `booking` (`ID`, `GuestID`, `RoomID`, `NumberOfGuests`, `ArrivalDate`, `DepartureDate`) VALUES
-(1, 1, 14, 4, '2019-02-19', '2019-02-20'),
-(2, 2, 15, 3, '2019-02-19', '2019-02-20');
+DROP TABLE IF EXISTS `company`;
+CREATE TABLE IF NOT EXISTS `company` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CompanyName` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `VATNumber` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
+  `Country` int(11) NOT NULL,
+  `ZipCode` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
+  `City` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `Address` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `PhoneNumber` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
+  `EmailAddress` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `CompanyName` (`CompanyName`),
+  UNIQUE KEY `VATNumber` (`VATNumber`),
+  UNIQUE KEY `PhoneNumber` (`PhoneNumber`),
+  UNIQUE KEY `EmailAddress` (`EmailAddress`),
+  KEY `countryid_company` (`Country`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `company`
+--
+
+INSERT INTO `company` (`ID`, `CompanyName`, `VATNumber`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
+(1, 'Duna-Döner Kft.', '14217395-2-06', 111, '6900', 'Makó', 'Hunyadi u. 4./A', '06 626 38 225', 'office@dunadoner.com'),
+(2, 'Netsurf Távközlési Kft.', '12937626-2-06', 111, '6724', 'Szeged', 'Rókusi körút 42-64.', '06 (62) / 488-944', 'info@netsurfclub.hu'),
+(3, 'Mészáros és Mészáros Kft.', '12671003-2-07', 111, '8086', 'Felcsút', '0311/5.hrsz.', '06 (30) / 849-6670', 'info@meszaroskft.hu');
 
 -- --------------------------------------------------------
 
@@ -389,8 +415,6 @@ CREATE TABLE IF NOT EXISTS `guest` (
   `DocumentNumber` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
   `Citizenship` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
   `BirthDate` date DEFAULT NULL,
-  `BillingName` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `VATNumber` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
   `Country` int(11) NOT NULL,
   `ZipCode` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
   `City` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
@@ -401,20 +425,16 @@ CREATE TABLE IF NOT EXISTS `guest` (
   UNIQUE KEY `PhoneNumber` (`PhoneNumber`),
   UNIQUE KEY `EmailAddress` (`EmailAddress`),
   KEY `countryid` (`Country`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `guest`
 --
 
-INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`, `BillingName`, `VATNumber`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
-(1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', '', '', 111, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
-(2, 'Duna-Döner Kft.', '', '', NULL, '', '14217395-2-06', 111, '6900', 'Makó', 'Hunyadi u. 4./A', '06 626 38 225', 'office@dunadoner.com'),
-(3, 'Netsurf Távközlési Kft.', '', '', NULL, '', '12937626-2-06', 111, '6724', 'Szeged', 'Rókusi körút 42-64.', '06 (62) / 488-944', 'info@netsurfclub.hu'),
-(4, 'KÖZGÉP Zrt.', '', '', NULL, '', '10950676-2-44', 111, '1239', 'Budapest', 'Haraszti út 44.', '06 (1) 286 0322', 'info@kozgep.hu'),
-(5, 'Mészáros és Mészáros Kft.', '', '', NULL, '', '12671003-2-07', 111, '8086', 'Felcsút', '0311/5.hrsz.', '06 (30) / 849-6670', 'info@meszaroskft.hu'),
-(6, 'Ábrahám Alajos', '122562AR', 'magyar', '1934-02-22', '', '', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
-(7, 'Vakkas Tanner', 'UBNT23E', 'török', '1973-12-12', '', '', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'vakkas@turkeycom.tr');
+INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
+(1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', 111, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
+(2, 'Ábrahám Alajos', '122562AR', 'magyar', '1934-02-22', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
+(3, 'Vakkas Tanner', 'UBNT23E', 'török', '1973-12-12', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'vakkas@turkeycom.tr');
 
 -- --------------------------------------------------------
 
@@ -521,6 +541,12 @@ ALTER TABLE `billing_item`
 ALTER TABLE `booking`
   ADD CONSTRAINT `guestid` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `roomid` FOREIGN KEY (`RoomID`) REFERENCES `room` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Megkötések a táblához `company`
+--
+ALTER TABLE `company`
+  ADD CONSTRAINT `countryid_company` FOREIGN KEY (`Country`) REFERENCES `country` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Megkötések a táblához `guest`
