@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 28. 17:09
+-- Létrehozás ideje: 2019. Feb 28. 19:44
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `accomodation` (
 --
 
 INSERT INTO `accomodation` (`ID`, `AccomodationName`, `CompanyName`, `Contact`, `VATNumber`, `Headquarters`, `Site`, `PhoneNumber`, `EmailAddress`) VALUES
-(1, 'Autós Panzió', 'Autóscsárda-Panzió Vendéglátó és Kereskedelmi Kft.', 'Szabó Norbert', '13542199-2-06', '6900 Makó, Deák Ferenc u. 28./B', '6900 Makó, Báló liget', '06 (62) 510 298', 'info@autospanzio.hu');
+(1, 'Aranyerdő Vendégház', 'Aranyerdő Vendéglátó és Kereskedelmi Kft.', 'Juhász Bence', '12322119-6-01', '6900 Makó, Kálvária u 48./A', '6900 Makó, Balaton u. 2.', '06 (20) 294 42 80', 'info@aranyerdo.hu');
 
 -- --------------------------------------------------------
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `accomodation_profile` (
 --
 
 INSERT INTO `accomodation_profile` (`Accomodation`, `AccomodationID`, `Password`) VALUES
-(1, 'AUTPNZ', 'norci71');
+(1, 'ARNYERD', 'admin');
 
 -- --------------------------------------------------------
 
