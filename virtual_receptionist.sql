@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 28. 16:10
+-- Létrehozás ideje: 2019. Feb 28. 17:09
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -485,8 +485,8 @@ INSERT INTO `room` (`ID`, `Number`, `Name`, `Category`, `Capacity`) VALUES
 (11, 12, 'Földszinti háromágyas', 3, 3),
 (12, 14, 'Emeleti franciaágyas', 2, 2),
 (13, 15, 'Emeleti külön ágyas', 2, 2),
-(14, 16, 'Apartman', 5, 4),
-(15, 17, 'Apartman', 5, 4),
+(14, 16, 'Emeleti apartman', 5, 4),
+(15, 17, 'Emeleti apartman', 5, 4),
 (16, 18, 'Emeleti külön ágyas', 2, 2),
 (17, 19, 'Emeleti franciaágyas', 2, 2);
 
