@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 25. 17:50
+-- Létrehozás ideje: 2019. Feb 28. 16:10
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `billing_item` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `BillingItem` (`BillingItemName`),
   KEY `category` (`Category`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `billing_item`
@@ -101,11 +101,12 @@ INSERT INTO `billing_item` (`ID`, `BillingItemName`, `Category`, `Price`) VALUES
 (1, '1 szoba 1 főre', 1, '8700'),
 (2, '1 szoba 2 főre', 1, '11400'),
 (3, '1 szoba 3 főre', 1, '14100'),
-(4, 'Apartman', 1, '16800'),
-(5, 'Idegenforgalmi adó', 3, '300'),
-(6, 'Idegenforgalmi adó mentes', 3, '0'),
-(7, 'Reggeli', 2, '1500'),
-(8, 'Mosás', 4, '1000');
+(4, '1 szoba 4 főre', 1, '14100'),
+(5, 'Apartman', 1, '16800'),
+(6, 'Idegenforgalmi adó', 3, '300'),
+(7, 'Idegenforgalmi adó mentes', 3, '0'),
+(8, 'Reggeli', 2, '1500'),
+(9, 'Mosás', 4, '1000');
 
 -- --------------------------------------------------------
 
@@ -142,12 +143,14 @@ DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `GuestID` int(11) NOT NULL,
-  `CompanyID` int(11),
+  `CompanyID` int(11) DEFAULT NULL,
   `RoomID` int(11) NOT NULL,
   `NumberOfGuests` int(10) NOT NULL,
   `ArrivalDate` date NOT NULL,
   `DepartureDate` date NOT NULL,
+  `InvoiceNumber` varchar(10) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`),
+  UNIQUE KEY `InvoiceNumber` (`InvoiceNumber`),
   KEY `roomid` (`RoomID`),
   KEY `guestid` (`GuestID`),
   KEY `companyid` (`CompanyID`)
@@ -157,9 +160,9 @@ CREATE TABLE IF NOT EXISTS `booking` (
 -- A tábla adatainak kiíratása `booking`
 --
 
-INSERT INTO `booking` (`ID`, `GuestID`, `CompanyID`, `RoomID`, `NumberOfGuests`, `ArrivalDate`, `DepartureDate`) VALUES
-(1, 3, 1, 15, 4, '2019-02-25', '2019-02-26'),
-(2, 1, NULL, 1, 3, '2019-02-25', '2019-02-26');
+INSERT INTO `booking` (`ID`, `GuestID`, `CompanyID`, `RoomID`, `NumberOfGuests`, `ArrivalDate`, `DepartureDate`, `InvoiceNumber`) VALUES
+(1, 3, 1, 15, 4, '2019-02-25', '2019-02-26', '2019/00001'),
+(2, 1, NULL, 1, 3, '2019-02-25', '2019-02-26', '2019/00002');
 
 -- --------------------------------------------------------
 
@@ -449,22 +452,6 @@ INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`,
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `log`
---
-
-DROP TABLE IF EXISTS `log`;
-CREATE TABLE IF NOT EXISTS `log` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Client` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
-  `OS_Version` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `LoginDate` varchar(25) COLLATE utf8_hungarian_ci DEFAULT NULL,
-  `LogoutDate` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
--- --------------------------------------------------------
-
---
 -- Tábla szerkezet ehhez a táblához `room`
 --
 
@@ -485,49 +472,23 @@ CREATE TABLE IF NOT EXISTS `room` (
 --
 
 INSERT INTO `room` (`ID`, `Number`, `Name`, `Category`, `Capacity`) VALUES
-(1, 1, 'Háromágyas', 1, 3),
-(2, 2, 'Háromágyas', 1, 3),
-(3, 3, 'Családi', 2, 4),
-(4, 4, 'Családi', 2, 4),
-(5, 6, 'Franciaágyas', 3, 2),
-(6, 7, 'Franciaágyas', 3, 2),
-(7, 8, 'Franciaágyas', 3, 2),
-(8, 9, 'Háromágyas', 1, 3),
-(9, 10, 'Háromágyas', 1, 3),
-(10, 11, 'Háromágyas', 1, 3),
-(11, 12, 'Háromágyas', 1, 3),
-(12, 14, 'Franciaágyas', 4, 2),
-(13, 15, 'Külön ágyas', 5, 2),
-(14, 16, 'Apartman', 6, 4),
-(15, 17, 'Apartman', 6, 4),
-(16, 18, 'Külön ágyas', 5, 2),
-(17, 19, 'Franciaágyas', 4, 2);
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `room_category`
---
-
-DROP TABLE IF EXISTS `room_category`;
-CREATE TABLE IF NOT EXISTS `room_category` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `RoomCategoryName` varchar(50) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `Category` (`RoomCategoryName`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `room_category`
---
-
-INSERT INTO `room_category` (`ID`, `RoomCategoryName`) VALUES
-(1, 'Földszinti háromágyas'),
-(2, 'Földszinti családi négyágyas'),
-(3, 'Földszinti franciaágyas'),
-(4, 'Emeleti franciaágyas'),
-(5, 'Emeleti külön ágyas'),
-(6, 'Apartman');
+(1, 1, 'Földszinti háromágyas', 3, 3),
+(2, 2, 'Földszinti háromágyas', 3, 3),
+(3, 3, 'Földszinti családi négyágyas', 4, 4),
+(4, 4, 'Földszinti családi négyágyas', 4, 4),
+(5, 6, 'Földszinti franciaágyas', 2, 2),
+(6, 7, 'Földszinti franciaágyas', 2, 2),
+(7, 8, 'Földszinti franciaágyas', 2, 2),
+(8, 9, 'Földszinti háromágyas', 3, 3),
+(9, 10, 'Földszinti háromágyas', 3, 3),
+(10, 11, 'Földszinti háromágyas', 3, 3),
+(11, 12, 'Földszinti háromágyas', 3, 3),
+(12, 14, 'Emeleti franciaágyas', 2, 2),
+(13, 15, 'Emeleti külön ágyas', 2, 2),
+(14, 16, 'Apartman', 5, 4),
+(15, 17, 'Apartman', 5, 4),
+(16, 18, 'Emeleti külön ágyas', 2, 2),
+(17, 19, 'Emeleti franciaágyas', 2, 2);
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -569,7 +530,7 @@ ALTER TABLE `guest`
 -- Megkötések a táblához `room`
 --
 ALTER TABLE `room`
-  ADD CONSTRAINT `categoryid` FOREIGN KEY (`Category`) REFERENCES `room_category` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `categoryid` FOREIGN KEY (`Category`) REFERENCES `billing_item` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
