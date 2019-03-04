@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Már 04. 18:56
+-- Létrehozás ideje: 2019. Már 04. 21:40
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -143,7 +143,6 @@ DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `GuestID` int(11) NOT NULL,
-  `CompanyID` int(11) DEFAULT NULL,
   `RoomID` int(11) NOT NULL,
   `NumberOfGuests` int(10) NOT NULL,
   `ArrivalDate` date NOT NULL,
@@ -152,51 +151,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `InvoiceNumber` (`InvoiceNumber`),
   KEY `roomid` (`RoomID`),
-  KEY `guestid` (`GuestID`),
-  KEY `companyid` (`CompanyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `booking`
---
-
-INSERT INTO `booking` (`ID`, `GuestID`, `CompanyID`, `RoomID`, `NumberOfGuests`, `ArrivalDate`, `DepartureDate`, `InvoiceNumber`) VALUES
-(1, 3, 1, 15, 4, '2019-02-25', '2019-02-26', '2019/00001'),
-(2, 1, NULL, 1, 3, '2019-02-25', '2019-02-26', '2019/00002');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `company`
---
-
-DROP TABLE IF EXISTS `company`;
-CREATE TABLE IF NOT EXISTS `company` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `CompanyName` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `VATNumber` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
-  `Country` int(11) NOT NULL,
-  `ZipCode` varchar(20) COLLATE utf8_hungarian_ci NOT NULL,
-  `City` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `Address` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  `PhoneNumber` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
-  `EmailAddress` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `CompanyName` (`CompanyName`),
-  UNIQUE KEY `VATNumber` (`VATNumber`),
-  UNIQUE KEY `PhoneNumber` (`PhoneNumber`),
-  UNIQUE KEY `EmailAddress` (`EmailAddress`),
-  KEY `countryid_company` (`Country`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `company`
---
-
-INSERT INTO `company` (`ID`, `CompanyName`, `VATNumber`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
-(1, 'Duna-Döner Kft.', '14217395-2-06', 111, '6900', 'Makó', 'Hunyadi u. 4./A', '06 626 38 225', 'office@dunadoner.com'),
-(2, 'Netsurf Távközlési Kft.', '12937626-2-06', 111, '6724', 'Szeged', 'Rókusi körút 42-64.', '06 (62) / 488-944', 'info@netsurfclub.hu'),
-(3, 'Mészáros és Mészáros Kft.', '12671003-2-07', 111, '8086', 'Felcsút', '0311/5.hrsz.', '06 (30) / 849-6670', 'info@meszaroskft.hu');
+  KEY `guestid` (`GuestID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 -- --------------------------------------------------------
 
@@ -510,15 +466,8 @@ ALTER TABLE `billing_item`
 -- Megkötések a táblához `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `companyid` FOREIGN KEY (`CompanyID`) REFERENCES `company` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `guestid` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `roomid` FOREIGN KEY (`RoomID`) REFERENCES `room` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Megkötések a táblához `company`
---
-ALTER TABLE `company`
-  ADD CONSTRAINT `countryid_company` FOREIGN KEY (`Country`) REFERENCES `country` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Megkötések a táblához `guest`
