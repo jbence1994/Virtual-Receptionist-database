@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Feb 28. 19:44
+-- Létrehozás ideje: 2019. Már 04. 18:56
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `accomodation_profile` (
 --
 
 INSERT INTO `accomodation_profile` (`Accomodation`, `AccomodationID`, `Password`) VALUES
-(1, 'ARNYERD', 'admin');
+(1, 'ARANYERDO', 'admin');
 
 -- --------------------------------------------------------
 
