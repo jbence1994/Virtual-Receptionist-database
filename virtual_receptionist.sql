@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Már 11. 22:16
+-- Létrehozás ideje: 2019. Már 17. 23:56
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -474,7 +474,7 @@ ALTER TABLE `billing_item`
 -- Megkötések a táblához `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `guestid` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `guestid` FOREIGN KEY (`GuestID`) REFERENCES `guest` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `roomid` FOREIGN KEY (`RoomID`) REFERENCES `room` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
