@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Már 17. 23:56
+-- Létrehozás ideje: 2019. Már 20. 02:48
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -118,7 +118,7 @@ DROP TABLE IF EXISTS `billing_item_category`;
 CREATE TABLE IF NOT EXISTS `billing_item_category` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `BillingItemCategoryName` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
-  `VAT` float NOT NULL,
+  `VAT` int(2) NOT NULL,
   `Unit` varchar(25) COLLATE utf8_hungarian_ci NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
