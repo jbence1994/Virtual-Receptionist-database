@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Már 20. 02:48
+-- Létrehozás ideje: 2019. Már 20. 17:20
 -- Kiszolgáló verziója: 10.1.32-MariaDB
 -- PHP verzió: 7.2.5
 
@@ -402,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `guest` (
   UNIQUE KEY `PhoneNumber` (`PhoneNumber`),
   UNIQUE KEY `EmailAddress` (`EmailAddress`),
   KEY `countryid` (`Country`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `guest`
@@ -410,8 +410,13 @@ CREATE TABLE IF NOT EXISTS `guest` (
 
 INSERT INTO `guest` (`ID`, `Name`, `DocumentNumber`, `Citizenship`, `BirthDate`, `Country`, `ZipCode`, `City`, `Address`, `PhoneNumber`, `EmailAddress`) VALUES
 (1, 'Juhász Bence', '134573AE', 'magyar', '1994-03-27', 111, '6900', 'Makó', 'Kálvária utca 48./A', '06 (20) / 294-4280', 'juhasz.bence@outlook.hu'),
-(2, 'Ábrahám Alajos', '122562AR', 'magyar', '1934-02-22', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
-(3, 'Vakkas Tanner', 'UBNT23E', 'török', '1973-12-12', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'vakkas@turkeycom.tr');
+(2, 'Kiss Péter', '122562AR', 'magyar', '1934-02-22', 111, '8900', 'Zalaegerszeg', 'Petőfi Sándor utca 114.', '06 (30) / 246-5256', 'abraham@t-online.hu'),
+(3, 'Recep Tayyip Erdoğan', 'UBNT23E', 'török', '1973-12-12', 181, '12345ED', 'Ankara', '22 Sulugöz Sk.', '+34 456 443 232', 'erdogan@turkey.gov.tr'),
+(4, 'Horváth Péter', 'RENS24W', 'magyar', '1996-03-20', 111, '6760', 'Kistelek', 'Liget utca 3.', '06 30 456 39 22', 'peter.horvath@gmail.com'),
+(5, 'Kiss Lajos', 'ZTCÉ44T', 'magyar', '1997-02-01', 111, '6960', 'Makó', 'Teleki László utca 22.', '06 (30) / 456 32 74', 'kiss.lajos@gmail.com'),
+(6, 'Barack Obama', '35466457457', 'amerikai', '1961-08-04', 4, '20001', 'Washington, DC.', '931 R St NW', '+555 234 678', 'potus@gov.us'),
+(7, 'Donald Trump', '46678797698', 'amerikai', '1946-06-14', 4, '20500', 'Washington, DC.', '1600 Pennsylvania Ave NW', '+555 356 864', 'potus@gmail.com'),
+(8, 'Xi Jinping', 'RJHJ4453', 'kínai', '1953-06-15', 87, '2354', 'Peking', 'N 2nd Ring Rd', '+86 134 4546 3345', 'gov@govonline.cn');
 
 -- --------------------------------------------------------
 
