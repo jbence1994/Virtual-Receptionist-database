@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Már 21. 16:21
+-- Létrehozás ideje: 2019. Már 21. 21:38
 -- Kiszolgáló verziója: 10.1.38-MariaDB
 -- PHP verzió: 7.3.3
 
@@ -467,13 +467,13 @@ INSERT INTO `room` (`ID`, `Number`, `Name`, `Category`, `Capacity`) VALUES
 -- Megkötések a táblához `accomodation_profile`
 --
 ALTER TABLE `accomodation_profile`
-  ADD CONSTRAINT `accomodationid` FOREIGN KEY (`Accomodation`) REFERENCES `accomodation` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `accomodationid` FOREIGN KEY (`Accomodation`) REFERENCES `accomodation` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `billing_item`
 --
 ALTER TABLE `billing_item`
-  ADD CONSTRAINT `category` FOREIGN KEY (`Category`) REFERENCES `billing_item_category` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `category` FOREIGN KEY (`Category`) REFERENCES `billing_item_category` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `booking`
@@ -492,7 +492,7 @@ ALTER TABLE `guest`
 -- Megkötések a táblához `room`
 --
 ALTER TABLE `room`
-  ADD CONSTRAINT `categoryid` FOREIGN KEY (`Category`) REFERENCES `billing_item` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `categoryid` FOREIGN KEY (`Category`) REFERENCES `billing_item` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
