@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Már 20. 17:20
--- Kiszolgáló verziója: 10.1.32-MariaDB
--- PHP verzió: 7.2.5
+-- Létrehozás ideje: 2019. Már 21. 16:21
+-- Kiszolgáló verziója: 10.1.38-MariaDB
+-- PHP verzió: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
