@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2019. Már 24. 03:23
+-- Létrehozás ideje: 2019. Már 30. 15:08
 -- Kiszolgáló verziója: 10.1.38-MariaDB
 -- PHP verzió: 7.3.3
 
@@ -475,7 +475,7 @@ ALTER TABLE `accomodation_profile`
 -- Megkötések a táblához `billing_item`
 --
 ALTER TABLE `billing_item`
-  ADD CONSTRAINT `category` FOREIGN KEY (`Category`) REFERENCES `billing_item_category` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `billing_item_categoryid` FOREIGN KEY (`Category`) REFERENCES `billing_item_category` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `booking`
